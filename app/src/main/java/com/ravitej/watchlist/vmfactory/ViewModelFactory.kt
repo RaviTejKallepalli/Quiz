@@ -2,7 +2,8 @@ package com.ravitej.watchlist.vmfactory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ravitej.watchlist.viewmodel.UserViewModel
+import com.ravitej.watchlist.repository.impl.QuizRepositoryImpl
+import com.ravitej.watchlist.viewmodel.impl.UserViewModelImpl
 
 class ViewModelFactory private constructor() : ViewModelProvider.Factory {
 
@@ -11,7 +12,7 @@ class ViewModelFactory private constructor() : ViewModelProvider.Factory {
     }
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return UserViewModel() as T
+        return UserViewModelImpl(QuizRepositoryImpl()) as T
     }
 
     companion object {

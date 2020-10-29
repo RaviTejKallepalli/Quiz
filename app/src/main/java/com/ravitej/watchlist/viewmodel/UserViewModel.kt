@@ -1,27 +1,13 @@
 package com.ravitej.watchlist.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.ravitej.watchlist.model.QuizQuestion
 
-class UserViewModel : ViewModel() {
-    private var tapCount = 0
-    private val toastLiveData: MutableLiveData<String> by lazy {
-        MutableLiveData("")
-    }
+interface UserViewModel {
 
-    fun toastLiveData(): LiveData<String> {
-        return toastLiveData
-    }
+    fun currentQuestion(): LiveData<QuizQuestion>
 
-    fun tapHandle() {
-        viewModelScope.launch {
-            tapCount++
-            delay(100)
-            toastLiveData.value = ("$tapCount taps")
-        }
-    }
+    fun buttonText(): LiveData<String>
+
+    fun onNext()
 }
